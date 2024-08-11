@@ -1,4 +1,4 @@
-﻿const express = require('express')
+﻿express = require('express')
 const app = express()
 
 const cafes = require('./cafes.json')
@@ -31,23 +31,24 @@ app.post('/cafes', (req, res) => {
 
 app.put('/cafes/:id', (req, res) => {
   const cafe = req.body
-    const { id } = req.params
-    if (id != cafe.id)
-    {return res
-            .status(400)
-            .send({
-                message: "El id del parámetro no coincide con el id del café recibido",
-            });}
+  const { id } = req.params
+  if (id != cafe.id) {
+    return res
+      .status(400)
+      .send({
+        message: 'El id del parámetro no coincide con el id del café recibido'
+      })
+  }
 
   const cafeIndexFound = cafes.findIndex((p) => p.id == id)
-    if (cafeIndexFound >= 0) {
+  if (cafeIndexFound >= 0) {
     cafes[cafeIndexFound] = cafe
-        res.send(cafes)
-    } else {
+    res.send(cafes)
+  } else {
     res
       .status(404)
       .send({ message: 'No se encontró ningún café con ese id' })
-    }
+  }
 })
 
 app.delete('/cafes/:id', (req, res) => {
