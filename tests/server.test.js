@@ -44,4 +44,9 @@ describe('Operaciones CRUD', () => {
   //   const response = await request(server).post('/cafes').send(coffee)
   //   expect(response.status).toBe(400)
   // })
+
+  test('REQ7 [GET /*] retornar 404 al consultar una ruta inválida', async () => {
+    const response = await request(server).get('/*').send()
+    expect(response.status).toBe(404)
+  })
 })
